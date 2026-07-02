@@ -3,6 +3,7 @@ from .models import SecurityNode, TelemetryLog, SecurityAlert
 
 
 class TelemetryLogSerializer(serializers.ModelSerializer):
+    node = serializers.PrimaryKeyRelatedField(queryset=SecurityNode.objects.all())
     node_name = serializers.CharField(source='node.name', read_only=True)
 
     class Meta:
@@ -16,7 +17,7 @@ class TelemetryLogSerializer(serializers.ModelSerializer):
             'ultrasonic_distance_cm',
             'radar_speed_m_s',
         ]
-        read_only_fields = ['id', 'timestamp', 'node', 'node_name']
+        read_only_fields = ['id', 'timestamp', 'node_name']
 
 
 class SecurityAlertSerializer(serializers.ModelSerializer):

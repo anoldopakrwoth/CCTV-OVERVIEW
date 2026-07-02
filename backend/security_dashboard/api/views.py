@@ -8,17 +8,37 @@ from .models import SecurityNode, TelemetryLog, SecurityAlert
 from .serializers import SecurityNodeSerializer, TelemetryLogSerializer, SecurityAlertSerializer
 
 
-class SecurityNodeListView(generics.ListAPIView):
-    queryset = SecurityNode.objects.annotate(active_alerts_count=models.Count('alerts', filter=models.Q(alerts__is_resolved=False)))
+class RootInfoView(views.APIView):
+    def get(self, request):
+        return Response(
+            {
+                'service': 'Security Dashboard API',
+                'status': 'ok',
+                'routes': [
+                    '/api/nodes/',
+                    '/api/telemetry/',
+                    '/api/alerts/',
+                ],
+            }
+        )
+
+
+class SecurityNodeListCreateView(generics.ListCreateAPIView):
+    queryset = SecurityNode.objects.annotate(
+        active_alerts_count=models.Count(
+            'alerts',
+            filter=models.Q(alerts__is_resolved=False)
+        )
+    )
     serializer_class = SecurityNodeSerializer
 
 
-class SecurityNodeDetailView(generics.RetrieveAPIView):
+class SecurityNodeDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = SecurityNode.objects.all()
     serializer_class = SecurityNodeSerializer
 
 
-class TelemetryLogListView(generics.ListAPIView):
+class TelemetryLogListCreateView(generics.ListCreateAPIView):
     serializer_class = TelemetryLogSerializer
 
     def get_queryset(self):
@@ -27,6 +47,19 @@ class TelemetryLogListView(generics.ListAPIView):
         if node_id:
             queryset = queryset.filter(node_id=node_id)
         return queryset
+
+    def perform_create(self, serializer):
+        node_id = self.kwargs.get('node_id')
+        if node_id:
+            node = get_object_or_404(SecurityNode, pk=node_id)
+            serializer.save(node=node)
+        else:
+            serializer.save()
+
+
+class SecurityAlertDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = SecurityAlert.objects.all()
+    serializer_class = SecurityAlertSerializer
 
 
 class SecurityAlertListCreateView(generics.ListCreateAPIView):
