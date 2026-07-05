@@ -1,0 +1,58 @@
+import type { SuspectCapture } from '@/types';
+
+export const mockSuspectCaptures: SuspectCapture[] = [
+  {
+    id: 1,
+    imageUrl: 'https://picsum.photos/seed/suspect-1/400/500',
+    timestamp: new Date(Date.now() - 45 * 60_000).toISOString(),
+    cameraName: 'North Gate Cam',
+    tags: ['intrusion', 'after-hours'],
+    details: 'Individual detected near restricted perimeter zone after closing hours.',
+    confidenceScore: 0.94,
+  },
+  {
+    id: 2,
+    imageUrl: 'https://picsum.photos/seed/suspect-2/400/500',
+    timestamp: new Date(Date.now() - 2 * 3600_000).toISOString(),
+    cameraName: 'Loading Dock',
+    tags: ['loitering', 'vehicle'],
+    details: 'Unidentified vehicle parked for extended period near loading bay.',
+    confidenceScore: 0.87,
+  },
+  {
+    id: 3,
+    imageUrl: 'https://picsum.photos/seed/suspect-3/400/500',
+    timestamp: new Date(Date.now() - 5 * 3600_000).toISOString(),
+    cameraName: 'Parking Lot A',
+    tags: ['face-match', 'watchlist'],
+    details: 'Possible match against internal watchlist — flagged for review.',
+    confidenceScore: 0.91,
+  },
+  {
+    id: 4,
+    imageUrl: 'https://picsum.photos/seed/suspect-4/400/500',
+    timestamp: new Date(Date.now() - 86400_000).toISOString(),
+    cameraName: 'Lobby Entrance',
+    tags: ['tailgating'],
+    details: 'Multiple persons entered on single badge swipe event.',
+    confidenceScore: 0.78,
+  },
+  {
+    id: 5,
+    imageUrl: 'https://picsum.photos/seed/suspect-5/400/500',
+    timestamp: new Date(Date.now() - 2 * 86400_000).toISOString(),
+    cameraName: 'Rooftop Perimeter',
+    tags: ['motion', 'unauthorized'],
+    details: 'Motion detected in restricted rooftop access area.',
+    confidenceScore: 0.82,
+  },
+  {
+    id: 6,
+    imageUrl: 'https://picsum.photos/seed/suspect-6/400/500',
+    timestamp: new Date(Date.now() - 3 * 86400_000).toISOString(),
+    cameraName: 'North Gate Cam',
+    tags: ['object-left'],
+    details: 'Unattended package detected near gate checkpoint.',
+    confidenceScore: 0.73,
+  },
+];
