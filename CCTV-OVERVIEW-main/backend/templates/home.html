@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Security Dashboard API</title>
+  <style>
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: linear-gradient(135deg, #081b33 0%, #15335f 100%); color: #fff; }
+    .page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px; }
+    .card { width: 100%; max-width: 920px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,0.25); backdrop-filter: blur(22px); padding: 40px; }
+    h1 { margin: 0 0 18px; font-size: clamp(2.4rem, 4vw, 3.8rem); letter-spacing: -0.04em; }
+    p { margin: 0 0 22px; line-height: 1.8; color: #dbe4f3; }
+    .chips { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin-top: 24px; }
+    .chip { padding: 18px 22px; border-radius: 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); transition: transform .2s ease, box-shadow .2s ease; }
+    .chip:hover { transform: translateY(-3px); box-shadow: 0 20px 48px rgba(0,0,0,0.18); }
+    .chip strong { display: block; margin-bottom: 8px; color: #f7fafc; }
+    .chip code { display: block; color: #a4c7ff; font-size: .95rem; word-break: break-word; }
+    .footer { margin-top: 32px; color: #99a7c6; font-size: .95rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: 14px 24px; border-radius: 14px; background: linear-gradient(135deg, #70c4ff, #4f7dff); color: #fff; text-decoration: none; font-weight: 600; box-shadow: 0 18px 38px rgba(79, 125, 255, 0.32); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <h1>Smart Perimeter Security Dashboard</h1>
+      <p>Backend API for real-time CCTV and sensor fusion monitoring. Connect your React dashboard via REST and WebSocket channels for instant perimeter alert delivery.</p>
+      <div class="chips">
+        <div class="chip"><strong>API Root</strong><code>/api/</code></div>
+        <div class="chip"><strong>Nodes</strong><code>/api/nodes/</code></div>
+        <div class="chip"><strong>Telemetry</strong><code>/api/telemetry/</code></div>
+        <div class="chip"><strong>Alerts</strong><code>/api/alerts/</code></div>
+      </div>
+      <div class="footer">WebSocket endpoint: <code>ws://127.0.0.1:8000/ws/telemetry/</code></div>
+      <div style="margin-top: 30px;"><a class="button" href="/api/">Open API</a></div>
+    </div>
+  </div>
+</body>
+</html>
